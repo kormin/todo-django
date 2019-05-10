@@ -1,0 +1,47 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-sm">
+    <h1>Edit Task</h1>
+
+    <form class="form-inline" method="POST" action="{% url 'edit_task' task.id %}">
+      {% csrf_token %}
+      <label class="sr-only" for="task">task</label>
+      <input type="text" class="form-control mb-2 mr-sm-2" name="task" id="task" placeholder="{{ task.name }}" />
+      <button type="submit" class="btn btn-primary mb-2">Update</button>
+    </form>
+
+  </div>
+  <div class="col-sm">
+    <h1>Delete Task</h1>
+
+    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteTaskModal{{ task.id }}">
+      Delete
+    </button>
+  </div>
+</div>
+{% endblock %}
+
+{% block modals %}
+<!-- Delete Task Modal -->
+<div class="modal fade bd-example-modal-sm" id="deleteTaskModal{{ task.id }}" tabindex="-1" role="dialog"
+  aria-labelledby="deleteTaskLabel{{ task.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <!-- Note: Flexbox used to align contents in modal header -->
+      <div class="modal-header" style="padding: 1rem; display: flex; align-items: flex-start; justify-content: space-between; ">
+        <h4 class="modal-title" id="deleteTaskLabel{{ task.id }}" style="font-weight: 500; font-size: 1.5rem;">Delete
+          Task?</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="margin: -1rem -1rem -1rem auto; padding: 1rem;">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a class="btn btn-primary" href="{% url 'delete_task' task.id %}" role="button">Confirm</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

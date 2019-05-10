@@ -1,0 +1,30 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# testing
+/coverage
+
+# production
+/build
+.env
+
+# misc
+*.pyc
+*~
+__pycache__
+myvenv
+db.sqlite3
+/static
+.DS_Store
+.idea
+.subl
+.vscode
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+*/migrations
+*.bat
